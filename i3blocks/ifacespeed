@@ -1,0 +1,44 @@
+#!/bin/bash
+#This script will be find the network speed of the block_instance if specified or find the default one if not
+#Then IT will print you the speed of this interface if founded
+
+if [[ -n "$BLOCK_INSTANCE" ]]; then
+    IF="$BLOCK_INSTANCE"
+else
+    IF=$(ip route | awk ' /^default/ {print $5; exit}')
+fi
+
+if [ ! -z "$IF" ];
+then 
+	_speed=$(sudo ethtool $IF |grep -i speed |awk '{print $2}')
+	if [ -z "$_speed" ];
+	then
+	      _result=1
+	else
+		if [ "$_speed" = "Unknown!" ];
+		then
+			_result=2	
+		else
+		        _result=3
+		fi
+	fi
+else
+	_result=2	
+fi
+
+case "$_result" in
+	1)
+		echo "SPEED NOT FOUND FOR" "$IF" # Full text
+		echo "SPEED NOT FOUND FOR" "$IF" # Short text
+		echo \#FFOOOO # Color
+		;;	
+	2)
+		echo "00Mb/s" # Full text
+		echo "00Mb/s" # Short text
+		echo \#FF0000 # Color
+		;;
+	3)
+		echo "$_speed" # Full text
+		echo "$_speed" # Short text
+		;;
+esac
