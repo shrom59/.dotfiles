@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cat /proc/mdstat |awk '
+/\/.*/ {
+	# full text
+	print $6
+	# short text
+	print $6
+	use=$6
+	# no need to continue parsing
+	exit 0
+}
+END {
+	gsub(/%$/,"",use)
+	if (use != "[UU]") {
+		#color
+		print "#FFOOOO"
+	}
+}
+'
