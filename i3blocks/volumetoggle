@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#This script will test if sounds is muted or not 
+#If so prompt will be print in red
+
+_vt=$(amixer get Master | grep "Mono:" | cut -d ' ' -f 8)
+
+if [ "$_vt" = "[on]" ];
+then
+	echo "ON" #Full text
+	echo "ON" #Short text
+elif [ "$_vt" = "[off]" ];
+then
+	echo "OFF" #Full text
+	echo "OFF" #Short text
+	echo \#FF0000
+else
+	echo "SOUND ERROR" #Full text
+        echo "SOUND ERROR" #Short text
+        echo \#FF0000
+fi
+exit
