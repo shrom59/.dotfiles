@@ -1,0 +1,206 @@
+#Start compton for transparency without all configurations
+exec --no-startup-id compton -b
+
+#Mod key 
+set $mod Mod4
+
+# Font
+font pango:System San Fransciso Display, FontAwesome 8
+
+# var for screen
+set $2 "HDMI2"
+set $3 "HDMI3"
+
+# Workspace vars
+set $WS1 "1"
+set $WS2 "2"
+set $WS3 "3"
+set $WS4 "4"
+set $WS5 "5"
+set $WS6 "6"
+set $WS7 "7"
+set $WS8 "8"
+set $WS9 "9"
+set $WS10 "10"
+
+# Switch to workspace
+bindsym $mod+ampersand workspace $WS1
+bindsym $mod+eacute workspace $WS2
+bindsym $mod+quotedbl workspace $WS3
+bindsym $mod+apostrophe workspace $WS4
+bindsym $mod+parenleft workspace $WS5
+bindsym $mod+minus workspace $WS6
+bindsym $mod+egrave workspace $WS7
+bindsym $mod+underscore workspace $WS8
+bindsym $mod+ccedilla workspace $WS9
+bindsym $mod+agrave workspace $WS10
+ 
+# Move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace $WS1
+bindsym $mod+Shift+eacute move container to workspace $WS2
+bindsym $mod+Shift+quotedbl move container to workspace $WS3
+bindsym $mod+Shift+apostrophe move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+minus move container to workspace $WS6
+bindsym $mod+Shift+egrave move container to workspace $WS7
+bindsym $mod+Shift+underscore move container to workspace $WS8
+bindsym $mod+Shift+ccedilla move container to workspace $WS9
+bindsym $mod+Shift+agrave move container to workspace $WS10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+ 
+# Alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+h split h
+ 
+# Split in vertical orientation
+bindsym $mod+v split v
+ 
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+ 
+# Range container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+ 
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+ 
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # Back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+x mode "resize"
+
+# Set colors
+set $wsf	  #0033FF
+set $wstrans	  #00000000
+set $wsred	  #ff0000
+set $text	  #ffffff
+set $texti	  #888888
+set $textu	  #80818A
+set $windowf      #0088CC
+set $windowu	  #333333
+
+# Class                 border  	 background  	text    
+client.focused		$windowf	 $windowf  	$text
+client.focused_inactive $windowu  	 $windowu	$texti   
+client.unfocused        $windowu 	 $windowu  	$textu   
+client.urgent           $wsred   	 $wsred		$text  
+
+# Start i3bar to display a workspace bar (plus the system information i3blocks
+# finds out, if available)
+bar {
+	status_command exec i3blocks -c /home/shrom/.i3/.i3blocksb.conf
+	position top
+        colors {
+                #                       border          background      text    
+                focused_workspace       $wsf            $wsf            $text
+                inactive_workspace      $wstrans        $wstrans        $text
+                urgent_workspace        $wsred          $wsred          $text
+               }
+}
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# New windows without border
+for_window [class="^.*"] border pixel 2
+
+# Fix gaps 
+gaps inner 4
+gaps outer -4
+smart_gaps on
+
+# Fix workspace on screen
+workspace $WS1 output $3
+workspace $WS2 output $2
+workspace $WS3 output $3
+workspace $WS4 output $3
+workspace $WS5 output $2
+workspace $WS6 output $2
+workspace $WS7 output $2
+workspace $WS8 output $3
+workspace $WS9 output $3
+workspace $WS10 output S3
+
+#Power management
+
+set $Locker i3lock -t -i ~/.config/i3lock/lock.png && sleep 1
+
+set $mode_system Choose one : (l) Lock, (r) Reboot, (p) Power Off
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym r exec --no-startup-id sudo virsh shutdown Lowe & sudo systemctl reboot, mode "default"
+    bindsym p exec --no-startup-id sudo virsh shutdown Lowe & sudo systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+#### Fix Dual screen ####
+exec_always xrandr --output $3 --primary --mode 1920x1080 --pos 0x1080 --rotate normal --output $2 --mode 1920x1080 --pos 0x0 --rotate normal
+
+# Start dmenu (program launcher)
+bindsym $mod+r exec dmenu_run -b -i -f -p "Run :" -nb black -sb blue -fn "System San Fransciso Display"
+
+# Start explorer
+bindsym $mod+d exec thunar
+
+# Start a terminal
+bindsym $mod+Return exec urxvtc
+   
+# Start a Web Browser
+bindsym $mod+b exec chromium
+   
+# Fix program on workspace
+
+# Use xprop to obtain the class and pick the second one ;)
+#e.g : assign [class="Chromium"] $WS2
+assign [class="Thunderbird"] $WS4
+assign [class="KeePass2"] $WS3
+assign [class="Thunar"] $WS3
+assign [class="Virt-manager"] $WS4
+
+# Fix Wallpaper
+exec_always feh --bg-scale ~/.i3/wallpapers/wallpaper.jpg
+
+# Volume management
+
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 2%+
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 2%-
+bindsym XF86AudioMute exec amixer -q sset Master toggle
+
+#Lunch all workspace on startup
