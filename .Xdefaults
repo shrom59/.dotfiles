@@ -1,0 +1,57 @@
+!!!!!!!!!!!!
+!! Colors !!
+!!!!!!!!!!!!
+! black
+*color0: #0A0A0A
+*color8: #201F1F
+
+! red
+*color1: #A22618
+*color9: #E84C24
+ 
+! green
+*color2: #539927
+*color10: #70B751
+
+! yellow
+*color3: #8E6514
+*color11: #B4A05A
+ 
+! blue
+*color4: #113050
+*color12: #0088CC
+ 
+! magenta
+*color5: #543973
+*color13: #84699B
+ 
+! cyan
+*color6: #4D92B4
+*color14: #8BCAEA
+ 
+! white
+*color7: #A3A29F
+*color15: #D4D2CF
+ 
+!!!!!!!!!!!
+!! URxvt !!
+!!!!!!!!!!!
+URxvt*foreground: white
+URxvt.perl-ext-common:  default,clipboard,url-select,keyboard-select,matcher
+URxvt.url-select-launcher: /usr/bin/google-chrome-stable
+URxvt.matcher.button: 1
+URxvt*cutchars: "()*,<>[]{}|"
+URxvt*font: xft:DejaVu Sans Mono:pixelsize=12
+URxvt*boldFont: xft:DejaVu Sans Mono:pixelsize=12
+URxvt*transparent: true
+URxvt*shading: 5
+URxvt*scrollBar: False
+*background: #141414
+*boldMode: on
+*colorMode: on
+*colorBDMode: on
+*colorULMode: on
+*underLine: on
+*colorBD: #275FA0
+*colorUL: #E84C24
+*scrollColor: #212121
