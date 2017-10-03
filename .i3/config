@@ -194,6 +194,10 @@ assign [class="KeePass2"] $WS3
 assign [class="Thunar"] $WS3
 assign [class="Virt-manager"] $WS4
 
+#Move to latest Urgent Windows
+
+bindsym $mod+u [urgent="latest"] focus
+
 # Fix Wallpaper
 exec_always feh --bg-scale ~/.i3/wallpapers/wallpaper.jpg
 
