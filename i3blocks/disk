@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 DIR="${BLOCK_INSTANCE:-$HOME}"
-ALERT_LOW="${1:-96}" # color will turn red if this value was false (default: 90%)
+ALERT_LOW="${1:-98}" # color will turn red if this value was false (default: 90%)
 
 df -h -P "$DIR" | awk -v alert_low=$ALERT_LOW '
 /\/.*/ {
