@@ -3,13 +3,17 @@
 #
 
 export TERM='xterm-256color'
+export SSHPORT='XXXX'
+export SSHSRV='usr@XXXX'
+export VODSRV='user@XXXX'
+export DLSRV='user@XXXX'
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo='sudo '
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
+ 
 alias ls='ls --color=auto'
 PS1="\[$(tput setaf 6)\][\u@\h \W]\\$\[$(tput sgr0)\] "
 
@@ -17,14 +21,15 @@ PS1="\[$(tput setaf 6)\][\u@\h \W]\\$\[$(tput sgr0)\] "
 complete -cf sudo
 
 #replace vim with nvim
-alias vim="sudo nvim"
+alias vim="nvim"
 
 #Load Openstack Vars
 alias pci="source ~/scripts/openrc.sh"
 
-#alias fir git
-alias commit="cd / && sudo git commit -am 'Adding files' && cd -"
-alias push="cd / && sudo git push configs master && cd -"
+#SSH aliases
+alias maze="ssh -p $SSHPORT $SSHSRV"
+alias dl='ssh -t $SSHSRV  -p $SSHPORT "ssh $DLSRV  -p $SSHPORT"'
+alias vod='ssh -t $SSHSRV -p $SSHPORT "ssh $VODSRV -p $SSHPORT"'
 
 #exec archey3 when open terminal
 archey3
