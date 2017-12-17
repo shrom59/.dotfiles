@@ -156,8 +156,9 @@ workspace $WS10 output S3
 #Power management
 
 set $Locker i3lock -t -i ~/.config/i3lock/lock.png && sleep 1
-set $Reboot sudo virsh shutdown Lowe & sudo systemctl reboot
-set $Poweroff sudo virsh shutdown Lowe & sudo systemctl poweroff -i
+set $Reboot sudo virsh shutdown Lowe && sleep 3 && sudo systemctl reboot
+set $Poweroff sudo virsh shutdown Lowe  && sleep 3 && sudo systemctl poweroff -i
+
 set $RestartX sudo systemctl restart sddm && sudo systemctl start urxvtd@user
 
 set $mode_system Choose one : (l) Lock, (r) Reboot, (p) Power Off, (x) Restart X
