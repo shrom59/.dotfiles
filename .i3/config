@@ -156,12 +156,16 @@ workspace $WS10 output S3
 #Power management
 
 set $Locker i3lock -t -i ~/.config/i3lock/lock.png && sleep 1
+set $Reboot sudo virsh shutdown Lowe & sudo systemctl reboot
+set $Poweroff sudo virsh shutdown Lowe & sudo systemctl poweroff -i
+set $RestartX sudo systemctl restart sddm && sudo systemctl start urxvtd@user
 
-set $mode_system Choose one : (l) Lock, (r) Reboot, (p) Power Off
+set $mode_system Choose one : (l) Lock, (r) Reboot, (p) Power Off, (x) Restart X
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym r exec --no-startup-id sudo virsh shutdown Lowe & sudo systemctl reboot, mode "default"
-    bindsym p exec --no-startup-id sudo virsh shutdown Lowe & sudo systemctl poweroff -i, mode "default"  
+    bindsym r exec --no-startup-id $Reboot, mode "default"
+    bindsym p exec --no-startup-id $Poweroff, mode "default"
+    bindsym x exec --no-startup-id $RestartX, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
