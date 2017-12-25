@@ -6,6 +6,7 @@ export TERM='xterm-256color'
 export SSHPORT='XXXX'
 export SSHSRV='usr@XXXX'
 export VODSRV='user@XXXX'
+export HAPSRV='user@XXXX'
 export DLSRV='user@XXXX'
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
@@ -30,6 +31,7 @@ alias pci="source ~/scripts/openrc.sh"
 alias maze="ssh -p $SSHPORT $SSHSRV"
 alias dl='ssh -t $SSHSRV  -p $SSHPORT "ssh $DLSRV  -p $SSHPORT"'
 alias vod='ssh -t $SSHSRV -p $SSHPORT "ssh $VODSRV -p $SSHPORT"'
+alias hap='ssh -t $SSHSRV -p $SSHPORT "ssh $HAPSRV -p $SSHPORT"'
 
 #exec archey3 when open terminal
 archey3
