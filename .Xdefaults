@@ -1,7 +1,7 @@
 ! special colors
 *.foreground:  #d0d0d0
 *.background:  #000000
-*.cursorColor:  #d0d0d0
+*.cursorColor: #d0d0d0
 ! black
 *.color0:      #000000
 *.color8:      #808080
@@ -35,19 +35,29 @@
 *colorBDMode: on
 *colorULMode: on
 *underLine: on
- 
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.iso14755: False
-URxvt.perl-ext-common:  default,matcher,url-select,keyboard-select, searchable-scrollback,clipboard,vtwheel
-URxvt*cutchars: "()*,<>[]{}|'"
-URxvt.urgentOnBell: True
-URxvt*termName: rxvt-unicode
-URxvt*urlLauncher: /usr/bin/chromium
-URxvt*matcher.button: 1
-URxvt.scrollBar: False
-URxvt*transparent: True
-URxvt*shading: 10
-URxvt*font: xft:DejaVu Sans Mono:pixelsize=12
-URxvt*boldFont: xft:DejaVu Sans Mono:pixelsize=12
-URxvt.matcher.button: 1
+
+!!Extensions
+URxvt.perl-ext-common:  default,matcher,url-select,keyboard-select
+!!Url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+!!Matcher 
+URxvt.matcher.button: 2
 URxvt.matcher.rend.0: Uline Bold fg5
+!!Keyboard-select:
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!!Url-launcher
+URxvt.url-launcher: /usr/bin/xdg-open
+!!Scrolbar
+URxvt.scrollBar: False
+!!Transparent mode
+URxvt.transparent: True
+URxvt.shading: 10
+!!Fonts
+URxvt.font: xft:DejaVu Sans Mono:pixelsize=12
+URxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=12
+!!Cutchars
+URxvt.cutchars: "()*,<>[]{}|'"
+!!Windows Name
+URxvt.termName: rxvt-unicode
