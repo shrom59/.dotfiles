@@ -106,7 +106,7 @@ set $wsred	  #ff0000
 set $text	  #ffffff
 set $texti	  #888888
 set $textu	  #80818A
-set $windowf      #0088CC
+set $windowf      #1793D1
 set $windowu	  #333333
 
 # Class                 border  	 background  	text    
