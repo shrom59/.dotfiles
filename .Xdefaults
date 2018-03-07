@@ -53,7 +53,7 @@ URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.scrollBar: False
 !!Transparent mode
 URxvt.transparent: True
-URxvt.shading: 10
+URxvt.shading: 20
 !!Fonts
 URxvt.font: xft:DejaVu Sans Mono:pixelsize=12
 URxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=12
