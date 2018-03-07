@@ -193,7 +193,6 @@ bindsym $mod+b exec chromium
 
 # Use xprop to obtain the class and pick the second one ;)
 #e.g : assign [class="Chromium"] $WS2
-assign [class="Thunderbird"] $WS4
 assign [class="KeePass2"] $WS3
 assign [class="Thunar"] $WS3
 assign [class="Virt-manager"] $WS4
