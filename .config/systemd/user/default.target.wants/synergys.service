@@ -1,1 +1,10 @@
-/usr/lib/systemd/user/synergys.service
+[Unit]
+Description=Synergy Server Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/synergys --no-daemon --enable-crypto --config /home/shrom/.config/synergys/synergy.conf -d WARNING
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
