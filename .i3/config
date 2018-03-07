@@ -100,7 +100,7 @@ mode "resize" {
 bindsym $mod+x mode "resize"
 
 # Set colors
-set $wsf	  #0033FF
+set $wsf	  #1793D1
 set $wstrans	  #00000000
 set $wsred	  #ff0000
 set $text	  #ffffff
