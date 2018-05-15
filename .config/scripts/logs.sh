@@ -1,2 +1,2 @@
 #!/bin/bash
-urxvtc -e bash -c "while true; do dmesg -T; sleep 30; done" & urxvtc -e bash -c "while true; do journalctl -xb -f; done"
+urxvtc -e bash -c "dmesg -T -L -w" & urxvtc -e bash -c "journalctl -xb -f"
