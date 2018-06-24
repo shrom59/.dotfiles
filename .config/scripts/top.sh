@@ -1,3 +1,3 @@
 
 #!/bin/bash
-urxvtc -e bash -c "htop"
+urxvtc -e bash -c "htop -t"
