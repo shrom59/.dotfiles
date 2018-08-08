@@ -29,5 +29,8 @@ alias pci="source ~/scripts/openrc.sh"
 alias maze="ssh -p $SSHPORT $SSHSRV"
 alias dl='ssh -t $SSHSRV  -p $SSHPORT "ssh $DLSRV  -p $SSHPORT"'
 
+#Backup VM alias
+alias bak="~/scripts/vmback.sh Lowe"
+
 #exec archey3 when open terminal
 archey3
