@@ -55,8 +55,8 @@ URxvt.scrollBar: False
 URxvt.transparent: True
 URxvt.shading: 20
 !!Fonts
-URxvt.font: xft:DejaVu Sans Mono:pixelsize=12
-URxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=12
+URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=12                                                      
+URxvt.boldFont: xft:DejaVu Sans Mono for Powerline:pixelsize=12
 !!Cutchars
 URxvt.cutchars: "()*,<>[]{}|'"
 !!Windows Name
